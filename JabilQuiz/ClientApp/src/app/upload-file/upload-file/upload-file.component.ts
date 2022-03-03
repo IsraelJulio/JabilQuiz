@@ -46,7 +46,6 @@ export class UploadFileComponent implements OnInit {
       this.service.upload(this.files,  'api/Upload/UploadFiles')
         .pipe(
           uploadProgress(progress => {
-            console.log(progress);
             this.progress = progress;
           }),
           filterResponse()

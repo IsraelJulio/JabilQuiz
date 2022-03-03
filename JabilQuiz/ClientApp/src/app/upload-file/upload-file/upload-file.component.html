@@ -1,3 +1,17 @@
+<h1 id="tableLabel">Criar uma nova lista de Estudos</h1>
+
+
+<div class="row">
+  <div class="col">
+    <label for="Title" class="form-label">Título</label>
+    <input type="text" class="form-control"  placeholder="Insira um título para o Quiz" required aria-label="Título">
+  </div>
+  <div class="col">
+    <label for="User" class="form-label">Usuário</label>
+    <input type="text" class="form-control" placeholder="Nome do Usuário" aria-label="Usuário">
+  </div>
+</div>
+
 <div style="margin-top: 10px">
   <div class="custom-file">
     <input
@@ -11,7 +25,7 @@
       >Selecionar Arquivo</label
     >
   </div>
-  <div class="progress">
+  <div class="progress" >
     <div
       class="progress-bar"
       role="progressbar"
@@ -22,15 +36,15 @@
   </div>
 </div>
 <div style="margin-top: 10px">
-  <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!files">
-    Upload
+  <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!files" >
+    Criar
   </button>
 </div>
 <div style="margin-top: 10px">
-  <button type="button" class="btn btn-primary" (click)="onDownloadExcel()">
+  <!-- <button type="button" class="btn btn-primary" (click)="onDownloadExcel()">
     Download Excel
   </button>
   <button type="button" class="btn btn-primary" (click)="onDownloadPDF()">
     Download PDF
-  </button>
+  </button> -->
 </div>

@@ -15,6 +15,7 @@ const routes: Routes = [
     { path: 'counter', component: CounterComponent },
     { path: 'fetch-data', component: FetchDataComponent },
     { path: 'upload', component: UploadFileComponent },
+    { path: 'Create', component: UploadFileComponent },
 
 ];
 
