@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
+import { Quiz } from '../models/quiz';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,6 @@ export class UploadFileService {
     const formData = new FormData();
     files.forEach(file => formData.append('file', file, file.name));
 
-    // const request = new HttpRequest('POST', url, formData);
-    // return this.http.request(request);
 
     return this.http.post(url, formData, {
       observe: 'events',
@@ -59,4 +58,12 @@ export class UploadFileService {
       link.remove();
     }, 100);
   }
+
+  Save(quizList: any,url: string) {
+    console.log(quizList,url);
+    return this.http.post(url,quizList,{
+      observe: 'events',
+      reportProgress: true,
+    });
+ }
 }

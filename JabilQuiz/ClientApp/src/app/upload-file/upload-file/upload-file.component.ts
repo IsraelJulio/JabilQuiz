@@ -5,6 +5,7 @@ import { take } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { HttpEventType, HttpEvent } from '@angular/common/http';
 import { filterResponse, uploadProgress } from '../../shared/rxjs-operators';
+import { Quiz } from 'src/app/models/quiz';
 
 @Component({
   selector: 'app-upload-file',
@@ -16,6 +17,8 @@ export class UploadFileComponent implements OnInit {
 
   files: Set<File>;
   progress = 0;
+  quizUrl = 'http://localhost:3000/quiz';
+  quizList: Quiz[];
 
   constructor(private service: UploadFileService) { }
 
@@ -48,7 +51,10 @@ export class UploadFileComponent implements OnInit {
           }),
           filterResponse()
         )
-        .subscribe(response => console.log(response));
+        .subscribe(response => {
+          // this.quizList = response as Quiz[];
+          this.service.Save(response,this.quizUrl)
+        });
         // .subscribe((event: HttpEvent<Object>) => {
         //   // console.log(event);
         //   if (event.type === HttpEventType.Response) {

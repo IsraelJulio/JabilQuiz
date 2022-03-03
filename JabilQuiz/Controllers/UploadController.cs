@@ -13,6 +13,8 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using JabilQuiz.Model;
+using Newtonsoft.Json;
+using Interface.DataServices;
 
 namespace WebApplication.Controllers
 {
@@ -21,6 +23,12 @@ namespace WebApplication.Controllers
     [ApiController]
     public class UploadController : ControllerBase
     {
+        readonly IQuizService _quizService;
+
+        public UploadController(IQuizService quizService)
+        {
+            this._quizService = quizService;
+        }
         [HttpPost("UploadFiles")]
         public async Task<IActionResult> UploadFiles(IFormFile file)
         {
@@ -55,14 +63,13 @@ namespace WebApplication.Controllers
                             skip = true;
                         else
                         {
-                            Quiz quiz = new Quiz();
+                            Quiz quiz = new Quiz();                            
                             quiz.Question = actualRow.GetCell(0).StringCellValue;
                             quiz.Answer = actualRow.GetCell(1).StringCellValue;
                             QuizList.Add(quiz);
                         }
                     }
-
-
+                    await this._quizService.SaveRangeAsync(QuizList);                 
                     return Ok(QuizList);
 
                 }

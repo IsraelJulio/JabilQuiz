@@ -1,6 +1,6 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+  "quiz": [
+    { "Id": "1", "Question": "hello?", "Answer": "world" }
   ],
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }

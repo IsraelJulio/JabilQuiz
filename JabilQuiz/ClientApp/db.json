@@ -1,0 +1,49 @@
+{
+  "quiz": [
+    {
+      "id": "1",
+      "question": "hello?",
+      "answer": "world"
+    },
+    {
+      "id": "K-hy-rj"
+    },
+    {
+      "id": "CUKLEou"
+    },
+    {
+      "id": "ClXbr6b"
+    },
+    {
+      "id": "swEtLBe"
+    },
+    {
+      "id": "b-dAArF"
+    },
+    {
+      "id": "Z2w1RiH"
+    },
+    {
+      "id": "HSpL8sI"
+    },
+    {
+      "id": "_0q31r4"
+    },
+    {
+      "id": "O3J__iI"
+    },
+    {
+      "id": "RkkmlBl"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

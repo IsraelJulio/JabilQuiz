@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JabilQuiz", "JabilQuiz\JabilQuiz.csproj", "{7AA85778-61CB-433C-B7A7-11C7D923D2E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JabilQuiz", "JabilQuiz\JabilQuiz.csproj", "{7AA85778-61CB-433C-B7A7-11C7D923D2E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{DA76BDDD-0161-4B2C-80C0-DE798B3A0A0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{9BEF2E94-077C-4382-A723-DF2924ECED94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{76F948A8-07A8-47A6-985C-204CC8A6D745}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9BEF2E94-077C-4382-A723-DF2924ECED94} = {9BEF2E94-077C-4382-A723-DF2924ECED94}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServices", "DataServices\DataServices.csproj", "{F267830D-8417-4FC3-9C9F-9F489BD735E1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9BEF2E94-077C-4382-A723-DF2924ECED94} = {9BEF2E94-077C-4382-A723-DF2924ECED94}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +29,22 @@ Global
 		{7AA85778-61CB-433C-B7A7-11C7D923D2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AA85778-61CB-433C-B7A7-11C7D923D2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AA85778-61CB-433C-B7A7-11C7D923D2E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA76BDDD-0161-4B2C-80C0-DE798B3A0A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA76BDDD-0161-4B2C-80C0-DE798B3A0A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA76BDDD-0161-4B2C-80C0-DE798B3A0A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA76BDDD-0161-4B2C-80C0-DE798B3A0A0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BEF2E94-077C-4382-A723-DF2924ECED94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BEF2E94-077C-4382-A723-DF2924ECED94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BEF2E94-077C-4382-A723-DF2924ECED94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BEF2E94-077C-4382-A723-DF2924ECED94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76F948A8-07A8-47A6-985C-204CC8A6D745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F948A8-07A8-47A6-985C-204CC8A6D745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F948A8-07A8-47A6-985C-204CC8A6D745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F948A8-07A8-47A6-985C-204CC8A6D745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F267830D-8417-4FC3-9C9F-9F489BD735E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F267830D-8417-4FC3-9C9F-9F489BD735E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F267830D-8417-4FC3-9C9F-9F489BD735E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F267830D-8417-4FC3-9C9F-9F489BD735E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
