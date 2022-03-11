@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Quiz } from '../models/quiz';
+import { Game } from '../models/game';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,11 @@ export class UploadFileService {
 
   upload(files: Set<File>, url: string) {
 
-    const formData = new FormData();
-    files.forEach(file => formData.append('file', file, file.name));
-
+    let formData = new FormData();
+    files.forEach(file => formData.append('file', file));
+    var title = (<HTMLInputElement>document.getElementById('title')).value;
+    var user = (<HTMLInputElement>document.getElementById('user')).value;
+    url += '/'+ user + '/'+ title
 
     return this.http.post(url, formData, {
       observe: 'events',

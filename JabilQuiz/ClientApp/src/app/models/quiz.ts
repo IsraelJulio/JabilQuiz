@@ -1,5 +1,6 @@
 export class Quiz {
-  Id:string;
+  Id:number;
   Question: string
   Answer: string
+  GameId: number
 }

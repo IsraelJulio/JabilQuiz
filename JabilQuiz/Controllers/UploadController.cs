@@ -29,8 +29,8 @@ namespace WebApplication.Controllers
         {
             this._quizService = quizService;
         }
-        [HttpPost("UploadFiles")]
-        public async Task<IActionResult> UploadFiles(IFormFile file)
+        [HttpPost("UploadFiles/{user}/{title}")]
+        public async Task<IActionResult> UploadFiles(IFormFile file,string title, string user)
         {
             try
             {

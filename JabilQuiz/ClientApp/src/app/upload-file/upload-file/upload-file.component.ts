@@ -42,6 +42,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   onUpload() {
+
     if (this.files && this.files.size > 0) {
       this.service.upload(this.files,  'api/Upload/UploadFiles')
         .pipe(
@@ -51,7 +52,7 @@ export class UploadFileComponent implements OnInit {
           filterResponse()
         )
         .subscribe(response => {
-          // this.quizList = response as Quiz[];
+          this.quizList = response as Quiz[];
           this.service.Save(response,this.quizUrl)
         });
         // .subscribe((event: HttpEvent<Object>) => {
