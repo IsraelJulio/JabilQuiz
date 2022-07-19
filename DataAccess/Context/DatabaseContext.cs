@@ -24,6 +24,7 @@ namespace DataAccess.Context
 
         public DbSet<Quiz> Quiz { get; set; }       
         public DbSet<Game> Game { get; set; }       
+        public DbSet<Alternative> Alternative { get; set; }       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

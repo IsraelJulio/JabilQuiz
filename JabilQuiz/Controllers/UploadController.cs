@@ -26,11 +26,13 @@ namespace WebApplication.Controllers
     {
         readonly IQuizService _quizService;
         readonly IGameService _gameService;
+        readonly IAlternativeService _alternativeService;
 
-        public UploadController(IQuizService quizService, IGameService gameService)
+        public UploadController(IQuizService quizService, IGameService gameService, IAlternativeService alternativeService)
         {
             this._quizService = quizService;
             this._gameService = gameService;
+            this._alternativeService = alternativeService;
         }
         [HttpPost("UploadFiles/{user}/{title}")]
         public async Task<IActionResult> UploadFiles(IFormFile file,string user, string title)
@@ -58,6 +60,7 @@ namespace WebApplication.Controllers
                 try
                 {
                     List<Quiz> QuizList = new List<Quiz>();
+                    List<Alternative> alternativesList = new List<Alternative>();
                    
                     var actualRow = sheet.GetRow(0);
                     bool skip = false;
@@ -71,14 +74,37 @@ namespace WebApplication.Controllers
                         {
                             Quiz quiz = new Quiz();                            
                             quiz.Question = actualRow.GetCell(0).StringCellValue;
-                            quiz.Answer = actualRow.GetCell(1).StringCellValue;
                             quiz.GameId = game.Id;
                             QuizList.Add(quiz);
                         }
                     }
+                    skip = false;
+                    actualRow = sheet.GetRow(0);
 
-                                    
-                    await this._quizService.SaveRangeAsync(QuizList);                 
+                    await this._quizService.SaveRangeAsync(QuizList);
+
+                    string question = "";
+                    for (int row = 0; (row <= sheet.LastRowNum) && (skip == false); row++)
+                    {
+                        actualRow = sheet.GetRow(row);
+                        if (actualRow.GetCell(0).StringCellValue == "")
+                            skip = true;
+                        else
+                        {
+                            for(int column = 1; column < actualRow.Cells.Count();column++)
+                            {
+                                Alternative alternative = new Alternative();
+                                if (column == 1)
+                                    alternative.RightAnswer = true;
+                                question = actualRow.GetCell(0).StringCellValue;
+                                alternative.Text = actualRow.GetCell(column).StringCellValue;
+                                alternative.QuizId = QuizList.Where(x => x.Question == question)
+                                                    .Select(x => x.Id).FirstOrDefault();
+                                alternativesList.Add(alternative);
+                            }
+                        }
+                    }
+                    await this._alternativeService.SaveRangeAsync(alternativesList);
                     return Ok(QuizList);
 
                 }

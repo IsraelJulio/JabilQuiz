@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace JabilQuiz.Model
 {
-    public class Quiz
+    public class Alternative
     {
         public int Id { get; set; }
-        public string Question { get; set; }
-        public int GameId { get; set; }
+        public string Text { get; set; }
+        public bool RightAnswer { get; set; }
+        public int QuizId { get; set; }
     }
 }
