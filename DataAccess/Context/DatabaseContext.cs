@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
+using Model;
 using System;
 using System.Collections.Generic;
 
@@ -22,6 +23,7 @@ namespace DataAccess.Context
         }
 
         public DbSet<Quiz> Quiz { get; set; }       
+        public DbSet<Game> Game { get; set; }       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

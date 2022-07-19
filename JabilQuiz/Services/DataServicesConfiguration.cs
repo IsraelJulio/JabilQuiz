@@ -10,6 +10,7 @@ namespace JabilQuiz.Services
         public static void AddDataServices(this IServiceCollection services)
         {
             services.AddTransient<IQuizService, QuizService>();
+            services.AddTransient<IGameService, GameService>();
             services.AddTransient<IUnityOfWork, UnityOfWork>();            
         }
     }

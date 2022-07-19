@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using JabilQuiz.Model;
 using Newtonsoft.Json;
 using Interface.DataServices;
+using Model;
 
 namespace WebApplication.Controllers
 {
@@ -24,17 +25,21 @@ namespace WebApplication.Controllers
     public class UploadController : ControllerBase
     {
         readonly IQuizService _quizService;
+        readonly IGameService _gameService;
 
-        public UploadController(IQuizService quizService)
+        public UploadController(IQuizService quizService, IGameService gameService)
         {
             this._quizService = quizService;
+            this._gameService = gameService;
         }
         [HttpPost("UploadFiles/{user}/{title}")]
-        public async Task<IActionResult> UploadFiles(IFormFile file,string title, string user)
+        public async Task<IActionResult> UploadFiles(IFormFile file,string user, string title)
         {
             try
             {
                 ISheet sheet;
+                Game game = new Game { Title = user, User = title };
+                await this._gameService.SaveAsync(game);
                 string fileName = Path.GetFileName(file.FileName);
                 var fileExt = Path.GetExtension(fileName);
 
@@ -53,6 +58,7 @@ namespace WebApplication.Controllers
                 try
                 {
                     List<Quiz> QuizList = new List<Quiz>();
+                   
                     var actualRow = sheet.GetRow(0);
                     bool skip = false;
                     
@@ -66,9 +72,12 @@ namespace WebApplication.Controllers
                             Quiz quiz = new Quiz();                            
                             quiz.Question = actualRow.GetCell(0).StringCellValue;
                             quiz.Answer = actualRow.GetCell(1).StringCellValue;
+                            quiz.GameId = game.Id;
                             QuizList.Add(quiz);
                         }
                     }
+
+                                    
                     await this._quizService.SaveRangeAsync(QuizList);                 
                     return Ok(QuizList);
 

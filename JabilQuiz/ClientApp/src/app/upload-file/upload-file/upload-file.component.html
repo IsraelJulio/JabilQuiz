@@ -1,7 +1,97 @@
-<h1 id="tableLabel">Criar uma nova lista de Estudos</h1>
 
 
-<div class="row">
+<div class="container">
+  <div [hidden]="submitted">
+    <h1 id="tableLabel">Criar uma nova lista de Estudos</h1>
+    <form (ngSubmit)="onSubmit()" #gameForm="ngForm">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" id="Title"
+                  required
+                  placeholder="Insira um título para o Quiz"
+                  [(ngModel)]="game.Title" name="Title"
+                  #Title="ngModel">
+            <div [hidden]="Title.valid || Title.pristine"
+                class="alert alert-danger">
+                Title is required
+            </div>
+         </div>
+
+          <div class="form-group col-sm-6">
+            <label for="User">User</label>
+            <input type="text" class="form-control" id="User"
+                  required
+                  placeholder="Insira o nome do Autor"
+                  [(ngModel)]="game.User" name="User"
+                  #User="ngModel">
+            <div [hidden]="User.valid || User.pristine"
+                class="alert alert-danger">
+                User is required
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 10px">
+          <div class="custom-file">
+            <input
+              type="file"
+              accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+              class="custom-file-input"
+              id="customFile"
+              (change)="onChange($event)"
+
+            />
+            <label class="custom-file-label" for="customFile" id="customFileLabel"
+              >Selecionar Arquivo</label
+            >
+          </div>
+          <div class="progress" >
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [style.width]="progress + '%'"
+            >
+              {{ progress }}%
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" style="margin-top: 15px" class="btn btn-success" [disabled]="!gameForm.form.valid">Submit</button>
+        <!-- <button type="button" class="btn btn-default" (click)="newGame(); heroForm.reset()">New Hero</button> -->
+      </div>
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9">{{ game.Title }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Alter Ego</div>
+      <div class="col-xs-9">{{ game.User }}</div>
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row">
   <div class="col">
     <label for="Title" class="form-label">Título</label>
     <input type="text" id="title" class="form-control"  placeholder="Insira um título para o Quiz" required aria-label="Título">
@@ -10,47 +100,28 @@
     <label for="User" class="form-label">Usuário</label>
     <input type="text" id="user" class="form-control" placeholder="Nome do Usuário" aria-label="Usuário">
   </div>
-</div>
+</div> -->
 
-<div style="margin-top: 10px">
-  <div class="custom-file">
-    <input
-      type="file"
-      class="custom-file-input"
-      id="customFile"
-      (change)="onChange($event)"
 
-    />
-    <label class="custom-file-label" for="customFile" id="customFileLabel"
-      >Selecionar Arquivo</label
-    >
-  </div>
-  <div class="progress" >
-    <div
-      class="progress-bar"
-      role="progressbar"
-      [style.width]="progress + '%'"
-    >
-      {{ progress }}%
-    </div>
-  </div>
-</div>
-<div style="margin-top: 10px">
-  <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!files" >
-    Criar
-  </button>
-</div>
-<div style="margin-top: 10px">
   <!-- <button type="button" class="btn btn-primary" (click)="onDownloadExcel()">
     Download Excel
   </button>
   <button type="button" class="btn btn-primary" (click)="onDownloadPDF()">
     Download PDF
   </button> -->
-</div>
+
 
 <div class="alert alert-success" style="margin-top: 60px" role="alert"><i class="bi bi-filetype-exe"></i>
  O arquivo deve conter duas colunas, sendo que a primeira é responsável por conter as perguntas do Quiz e a segunda, ficará responsável por conter as respostas.
 </div>
 
 <img src="assets/img/exemple.jpg" class="img-fluid" alt="Exemple">
+
+
+
+
+
+
+
+
+

@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { HttpEventType, HttpEvent } from '@angular/common/http';
 import { filterResponse, uploadProgress } from '../../shared/rxjs-operators';
 import { Quiz } from 'src/app/models/quiz';
+import { Game } from 'src/app/models/game';
 
 @Component({
   selector: 'app-upload-file',
@@ -19,7 +20,8 @@ export class UploadFileComponent implements OnInit {
   progress = 0;
   quizUrl = 'http://localhost:3000/quiz';
   quizList: Quiz[];
-
+  game = new Game();
+  submitted: boolean;
   constructor(private service: UploadFileService) { }
 
   ngOnInit() { }
@@ -41,10 +43,10 @@ export class UploadFileComponent implements OnInit {
     this.progress = 0;
   }
 
-  onUpload() {
+  onSubmit() {
 
     if (this.files && this.files.size > 0) {
-      this.service.upload(this.files,  'api/Upload/UploadFiles')
+      this.service.upload(this.files,  'api/Upload/UploadFiles',this.game)
         .pipe(
           uploadProgress(progress => {
             this.progress = progress;
@@ -55,16 +57,6 @@ export class UploadFileComponent implements OnInit {
           this.quizList = response as Quiz[];
           this.service.Save(response,this.quizUrl)
         });
-        // .subscribe((event: HttpEvent<Object>) => {
-        //   // console.log(event);
-        //   if (event.type === HttpEventType.Response) {
-        //     console.log('Upload Concluído');
-        //   } else if (event.type === HttpEventType.UploadProgress) {
-        //     const percentDone = Math.round((event.loaded * 100) / event.total);
-        //     // console.log('Progresso', percentDone);
-        //     this.progress = percentDone;
-        //   }
-        // } );
     }
   }
 
@@ -81,4 +73,5 @@ export class UploadFileComponent implements OnInit {
       this.service.handleFile(res, 'report.pdf');
     });
   }
+
 }

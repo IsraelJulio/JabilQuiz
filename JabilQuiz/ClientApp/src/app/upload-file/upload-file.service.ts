@@ -10,13 +10,11 @@ export class UploadFileService {
 
   constructor(private http: HttpClient) { }
 
-  upload(files: Set<File>, url: string) {
+  upload(files: Set<File>, url: string,game: Game) {
 
     let formData = new FormData();
     files.forEach(file => formData.append('file', file));
-    var title = (<HTMLInputElement>document.getElementById('title')).value;
-    var user = (<HTMLInputElement>document.getElementById('user')).value;
-    url += '/'+ user + '/'+ title
+    url += '/'+ game.Title + '/'+  game.User
 
     return this.http.post(url, formData, {
       observe: 'events',
