@@ -26,7 +26,8 @@ import { UploadFileModule } from './upload-file/upload-file.module';
     HttpClientModule,
     FormsModule,
     UploadFileModule,
-    AppRoutingModule
+    AppRoutingModule,
+
 
   ],
   providers: [],

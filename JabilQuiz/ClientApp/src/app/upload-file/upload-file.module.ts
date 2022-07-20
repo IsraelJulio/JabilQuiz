@@ -6,12 +6,14 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [UploadFileComponent],
   imports: [
     CommonModule,
     UploadFileRoutingModule,
-    FormsModule
+    FormsModule,
+
   ]
 })
 export class UploadFileModule { }

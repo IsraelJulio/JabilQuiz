@@ -58,8 +58,15 @@
           </div>
         </div>
 
-        <button type="submit" style="margin-top: 15px" class="btn btn-success" [disabled]="!gameForm.form.valid">Submit</button>
-        <!-- <button type="button" class="btn btn-default" (click)="newGame(); heroForm.reset()">New Hero</button> -->
+        <button class="btn btn-success" style="margin-top: 15px;padding-left:35px;" type="submit"  [disabled]="!(gameForm.form.valid && changeFile)">
+          <div [hidden]="!loading">
+            <span class="sr-only"></span>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+          </div>
+        Submit</button>
+
+        <!-- <button type="submit" style="margin-top: 15px" class="btn btn-success" [disabled]="!gameForm.form.valid">Submit</button> -->
+
       </div>
     </form>
   </div>
@@ -79,40 +86,10 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="row">
-  <div class="col">
-    <label for="Title" class="form-label">Título</label>
-    <input type="text" id="title" class="form-control"  placeholder="Insira um título para o Quiz" required aria-label="Título">
-  </div>
-  <div class="col">
-    <label for="User" class="form-label">Usuário</label>
-    <input type="text" id="user" class="form-control" placeholder="Nome do Usuário" aria-label="Usuário">
-  </div>
-</div> -->
-
-
-  <!-- <button type="button" class="btn btn-primary" (click)="onDownloadExcel()">
-    Download Excel
-  </button>
-  <button type="button" class="btn btn-primary" (click)="onDownloadPDF()">
-    Download PDF
-  </button> -->
-
-
 <div class="alert alert-success" style="margin-top: 60px" role="alert"><i class="bi bi-filetype-exe"></i>
- O arquivo deve conter duas colunas, sendo que a primeira é responsável por conter as perguntas do Quiz e a segunda, ficará responsável por conter as respostas.
+ O arquivo deve conter no minimo duas colunas, sendo que a primeira é responsável por conter as perguntas do Quiz.
+ Já a segunda, ficará responsável por conter a resposta correta.
+ Quanto as demais colunas, servirão para alternativas
 </div>
 
 <img src="assets/img/exemple.jpg" class="img-fluid" alt="Exemple">

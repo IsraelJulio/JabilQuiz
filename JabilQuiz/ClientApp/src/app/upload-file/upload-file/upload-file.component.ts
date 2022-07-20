@@ -22,6 +22,8 @@ export class UploadFileComponent implements OnInit {
   quizList: Quiz[];
   game = new Game();
   submitted: boolean;
+  loading:boolean = false;
+  changeFile:boolean = false;
   constructor(private service: UploadFileService) { }
 
   ngOnInit() { }
@@ -29,9 +31,9 @@ export class UploadFileComponent implements OnInit {
   onChange(event) {
     console.log(event);
 
+
     const selectedFiles = <FileList>event.srcElement.files;
     // document.getElementById('customFileLabel').innerHTML = selectedFiles[0].name;
-
     const fileNames = [];
     this.files = new Set();
     for (let i = 0; i < selectedFiles.length; i++) {
@@ -40,11 +42,16 @@ export class UploadFileComponent implements OnInit {
     }
     document.getElementById('customFileLabel').innerHTML = fileNames.join(', ');
 
+    if(this.files.size == 1)
+      this.changeFile = true;
+      else
+      this.changeFile = false;
     this.progress = 0;
   }
 
   onSubmit() {
 
+    this.loading = true;
     if (this.files && this.files.size > 0) {
       this.service.upload(this.files,  'api/Upload/UploadFiles',this.game)
         .pipe(
@@ -56,8 +63,11 @@ export class UploadFileComponent implements OnInit {
         .subscribe(response => {
           this.quizList = response as Quiz[];
           this.service.Save(response,this.quizUrl)
+          this.loading = false;
         });
     }
+
+
   }
 
   onDownloadExcel() {
